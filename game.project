@@ -22,3 +22,7 @@ scale_mode = stretch
 [project]
 title = GameOff_2026
 
+[graphics]
+default_texture_min_filter = nearest
+default_texture_mag_filter = nearest
+

@@ -1,0 +1,4 @@
+function init(self)
+	local pos = go.get_position("/spawn_point")
+	self.player = factory.create("#playerfactory", pos)
+end

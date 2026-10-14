@@ -1,0 +1,84 @@
+local SPEED = 90
+local GRAVITY = -900
+local JUMP_SPEED = 280
+local MAX_FALL = -500
+
+local GROUND = hash("ground")
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	self.velocity = vmath.vector3()
+	self.left = false
+	self.right = false
+	self.grounded = false
+	self.correction = vmath.vector3()
+	self.current_anim = nil
+	self.facing_left = false
+end
+
+local function play(self, anim)
+	if self.current_anim ~= anim then
+		self.current_anim = anim
+		sprite.play_flipbook("#sprite", hash(anim))
+	end
+end
+
+function update(self, dt)
+	local dir = 0
+	if self.left then dir = dir - 1 end
+	if self.right then dir = dir + 1 end
+
+	self.velocity.x = dir * SPEED
+
+	self.velocity.y = math.max(self.velocity.y + GRAVITY * dt, MAX_FALL)
+
+	go.set_position(go.get_position() + self.velocity * dt)
+
+	if dir ~= 0 then
+		local face_left = dir < 0
+		if face_left ~= self.facing_left then
+			self.facing_left = face_left
+			sprite.set_hflip("#sprite", face_left)
+		end
+		play(self, "run")
+
+	else
+		play(self, "idle")
+	end
+
+	self.correction = vmath.vector3()
+	self.grounded = false
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("contact_point_response") and message.group == GROUND then
+		if message.distance > 0 then
+			local proj = vmath.project(self.correction, message.normal * message.distance)
+			if proj < 1 then
+				local comp = (message.distance - message.distance * proj) * message.normal
+				go.set_position(go.get_position() + comp)
+				self.correction = self.correction + comp
+			end
+		end
+
+		if message.normal.y > 0.7 then
+			self.grounded = true
+			if self.velocity.y < 0 then self.velocity.y = 0 end
+
+		else
+			if message.normal.y < -0.7 and self.velocity.y > 0 then
+				self.velocity.y = 0
+			end
+		end
+	end
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("left") then
+		self.left = not action.released
+	elseif action_id == hash("right") then
+		self.right = not action.released
+	elseif action_id == hash("jump") and action.pressed and self.grounded then
+		self.velocity.y = JUMP_SPEED
+	end
+end

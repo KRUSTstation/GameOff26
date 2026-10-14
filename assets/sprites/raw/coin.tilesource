@@ -1,0 +1,72 @@
+image: "/assets/sprites/raw/coin.png"
+tile_width: 16
+tile_height: 16
+collision: "/assets/sprites/raw/coin.png"
+convex_hulls {
+  index: 0
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 8
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 16
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 24
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 32
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 40
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 48
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 56
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 64
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 72
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 80
+  count: 8
+  collision_group: "item"
+}
+convex_hulls {
+  index: 88
+  count: 8
+  collision_group: "item"
+}
+collision_groups: "item"
+animations {
+  id: "spin"
+  start_tile: 1
+  end_tile: 12
+  playback: PLAYBACK_LOOP_FORWARD
+}
+extrude_borders: 2
