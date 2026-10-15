@@ -1,4 +1,7 @@
 function init(self)
 	local pos = go.get_position("/spawn_point")
 	self.player = factory.create("#playerfactory", pos)
+
+	local cam = factory.create("#camerafactory", pos)
+	msg.post(cam, "set_target", {target = self.player})
 end

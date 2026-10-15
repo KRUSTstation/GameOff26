@@ -32,6 +32,12 @@ embedded_instances {
   "  data: \"prototype: \\\"/assets/sprites/entities/player.go\\\"\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"camerafactory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/assets/objects/camera.go\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
 }
 embedded_instances {

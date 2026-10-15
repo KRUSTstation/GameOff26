@@ -1,0 +1,21 @@
+local FOLLOW_SPEED = 6
+
+function init(self)
+	msg.post("#camera", "acquire_camera_focus")
+	self.target = nil
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("set_target") then
+		self.target = message.target
+	end
+end
+
+function update(self, dt)
+	if not self.target then return end
+
+	local goal = go.get_position(self.target)
+	local pos = go.get_position()
+	goal.z = pos.z
+	go.set_position(vmath.lerp(math.min(FOLLOW_SPEED * dt, 1), pos, goal))
+end
