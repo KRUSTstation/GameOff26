@@ -48,3 +48,19 @@ embedded_instances {
     y: 41.0
   }
 }
+embedded_instances {
+  id: "finish_point"
+  data: ""
+  position {
+    x: 819.0
+    y: 28.0
+  }
+}
+embedded_instances {
+  id: "go"
+  data: ""
+}
+embedded_instances {
+  id: "go1"
+  data: ""
+}

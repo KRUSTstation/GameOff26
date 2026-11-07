@@ -1,5 +1,6 @@
 [bootstrap]
 main_collection = /main/main.collectionc
+render = /builtins/render/default.renderc
 
 [script]
 shared_state = 1
@@ -21,6 +22,8 @@ scale_mode = stretch
 
 [project]
 title = GameOff_2026
+dependencies_metadata = 0
+dependencies = 
 
 [graphics]
 default_texture_min_filter = nearest

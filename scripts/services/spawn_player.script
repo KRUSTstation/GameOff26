@@ -2,6 +2,17 @@ function init(self)
 	local pos = go.get_position("/spawn_point")
 	self.player = factory.create("#playerfactory", pos)
 
+	local finish_pos = go.get_position("/finish_point")
+	self.finish_pos = finish_pos
+
 	local cam = factory.create("#camerafactory", pos)
 	msg.post(cam, "set_target", {target = self.player})
+end
+
+function update(self, dt)
+	local pos = go.get_position(self.player)
+
+	if pos.x >= self.finish_pos.x then
+		print("Finished")
+	end
 end
