@@ -1,36 +1,37 @@
-image: "/assets/sprites/raw/knight.png"
+image: "/assets/sprites/knight.png"
 tile_width: 32
 tile_height: 32
+collision_groups: "default"
 animations {
   id: "death"
   start_tile: 57
   end_tile: 60
-  fps: 7
+  fps: 10
 }
 animations {
   id: "hit"
   start_tile: 49
   end_tile: 52
-  fps: 7
+  fps: 10
 }
 animations {
   id: "idle"
   start_tile: 1
   end_tile: 4
   playback: PLAYBACK_LOOP_FORWARD
-  fps: 7
+  fps: 10
 }
 animations {
   id: "roll"
   start_tile: 41
   end_tile: 48
-  fps: 7
+  fps: 10
 }
 animations {
   id: "run"
   start_tile: 17
   end_tile: 32
   playback: PLAYBACK_LOOP_FORWARD
-  fps: 7
+  fps: 10
 }
 extrude_borders: 2

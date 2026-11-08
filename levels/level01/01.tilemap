@@ -1,4 +1,4 @@
-tile_set: "/assets/sprites/raw/world_tileset.tilesource"
+tile_set: "/levels/tiles/world_tileset.tilesource"
 layers {
   id: "layer1"
   z: 0.0

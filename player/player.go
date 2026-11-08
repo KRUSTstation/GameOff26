@@ -1,6 +1,6 @@
 components {
   id: "player_movement"
-  component: "/scripts/controllers/player_movement.script"
+  component: "/player/player_movement.script"
 }
 embedded_components {
   id: "sprite"
@@ -9,7 +9,7 @@ embedded_components {
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/sprites/raw/knight.tilesource\"\n"
+  "  texture: \"/player/player.tilesource\"\n"
   "}\n"
   ""
 }

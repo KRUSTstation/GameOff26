@@ -1,6 +1,6 @@
 components {
   id: "camera_follow"
-  component: "/scripts/services/camera_follow.script"
+  component: "/camera/camera_follow.script"
 }
 embedded_components {
   id: "camera"

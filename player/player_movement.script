@@ -1,6 +1,6 @@
 local SPEED = 90
 local ROLL_SPEED = 130
-local ROLL_TIME = 1
+local ROLL_TIME = 0.8
 local GRAVITY = -900
 local JUMP_SPEED = 280
 local MAX_FALL = -500
