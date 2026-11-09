@@ -1,4 +1,13 @@
-function init(self)
+local function bounds()
+	return {
+		left  = go.get_world_position("/cam_left"),
+		right = go.get_world_position("/cam_right"),
+		upper = go.get_world_position("/cam_upper"),
+		lower = go.get_world_position("/cam_lower"),
+	}
+end
+
+function init(self)	
 	local pos = go.get_position("/spawn_point")
 	self.player = factory.create("#playerfactory", pos)
 
@@ -6,7 +15,7 @@ function init(self)
 	self.finish_pos = finish_pos
 
 	local cam = factory.create("#camerafactory", pos)
-	msg.post(cam, "set_target", {target = self.player})
+	msg.post(cam, "set_target", {target = self.player, bounds = bounds()})
 end
 
 function update(self, dt)

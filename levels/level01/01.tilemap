@@ -303,4 +303,8 @@ layers {
     tile: 16
   }
 }
+layers {
+  id: "player"
+  z: 0.0
+}
 material: "/builtins/materials/tile_map.material"

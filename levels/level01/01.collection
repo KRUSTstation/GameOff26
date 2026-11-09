@@ -44,7 +44,7 @@ embedded_instances {
   id: "spawn_point"
   data: ""
   position {
-    x: 24.0
+    x: 42.0
     y: 41.0
   }
 }
@@ -52,7 +52,7 @@ embedded_instances {
   id: "finish_point"
   data: ""
   position {
-    x: 819.0
+    x: 798.0
     y: 28.0
   }
 }
@@ -63,4 +63,45 @@ embedded_instances {
 embedded_instances {
   id: "go1"
   data: ""
+}
+embedded_instances {
+  id: "cam_bounds"
+  children: "cam_left"
+  children: "cam_lower"
+  children: "cam_right"
+  children: "cam_upper"
+  data: ""
+}
+embedded_instances {
+  id: "cam_left"
+  data: ""
+  position {
+    x: -6.0
+    y: 23.0
+  }
+}
+embedded_instances {
+  id: "cam_right"
+  data: ""
+  position {
+    x: 832.0
+  }
+}
+embedded_instances {
+  id: "cam_upper"
+  data: ""
+  position {
+    x: 777.0
+    y: 405.0
+  }
+  scale3 {
+    y: 7.054797
+  }
+}
+embedded_instances {
+  id: "cam_lower"
+  data: ""
+  position {
+    x: 396.0
+  }
 }
