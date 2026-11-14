@@ -7,7 +7,7 @@ embedded_instances {
   "  component: \"/levels/level_loader.script\"\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"collectionproxy\"\n"
+  "  id: \"01\"\n"
   "  type: \"collectionproxy\"\n"
   "  data: \"collection: \\\"/levels/level01/01.collection\\\"\\n"
   "\"\n"

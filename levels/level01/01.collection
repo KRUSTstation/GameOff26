@@ -57,14 +57,6 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "go"
-  data: ""
-}
-embedded_instances {
-  id: "go1"
-  data: ""
-}
-embedded_instances {
   id: "cam_bounds"
   children: "cam_left"
   children: "cam_lower"
@@ -76,15 +68,18 @@ embedded_instances {
   id: "cam_left"
   data: ""
   position {
-    x: -6.0
+    x: -14.0
     y: 23.0
+  }
+  scale3 {
+    x: 0.912509
   }
 }
 embedded_instances {
   id: "cam_right"
   data: ""
   position {
-    x: 832.0
+    x: 847.0
   }
 }
 embedded_instances {
@@ -103,5 +98,18 @@ embedded_instances {
   data: ""
   position {
     x: 396.0
+  }
+}
+embedded_instances {
+  id: "death_bounds"
+  children: "death_lower"
+  data: ""
+}
+embedded_instances {
+  id: "death_lower"
+  data: ""
+  position {
+    x: 400.0
+    y: -63.0
   }
 }

@@ -9,18 +9,34 @@ end
 
 function init(self)	
 	local pos = go.get_position("/spawn_point")
+	self.spawn_point = pos
+	
 	self.player = factory.create("#playerfactory", pos)
 
 	local finish_pos = go.get_position("/finish_point")
 	self.finish_pos = finish_pos
 
+	self.death_lower = go.get_position("/death_lower").y
+
 	local cam = factory.create("#camerafactory", pos)
 	msg.post(cam, "set_target", {target = self.player, bounds = bounds()})
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("respawn") then
+		go.set_position(self.spawn_point, self.player)
+	end
 end
 
 function update(self, dt)
 	local pos = go.get_position(self.player)
 
+	-- Death check
+	if pos.y <= self.death_lower then
+		msg.post("#", "respawn")
+	end
+
+	-- Finish check
 	if pos.x >= self.finish_pos.x then
 		print("Finished")
 	end

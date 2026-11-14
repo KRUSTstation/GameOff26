@@ -263,9 +263,49 @@ layers {
     tile: 0
   }
   cell {
+    x: 52
+    y: 0
+    tile: 64
+  }
+  cell {
+    x: -1
+    y: 0
+    tile: 64
+  }
+  cell {
+    x: 52
+    y: 1
+    tile: 64
+  }
+  cell {
+    x: -1
+    y: 1
+    tile: 64
+  }
+  cell {
+    x: 52
+    y: 2
+    tile: 64
+  }
+  cell {
+    x: -1
+    y: 2
+    tile: 64
+  }
+  cell {
     x: 47
     y: 3
     tile: 16
+  }
+  cell {
+    x: 52
+    y: 3
+    tile: 64
+  }
+  cell {
+    x: -1
+    y: 3
+    tile: 64
   }
   cell {
     x: 47
@@ -273,14 +313,44 @@ layers {
     tile: 16
   }
   cell {
+    x: 52
+    y: 4
+    tile: 64
+  }
+  cell {
+    x: -1
+    y: 4
+    tile: 64
+  }
+  cell {
     x: 47
     y: 5
     tile: 16
   }
   cell {
+    x: 52
+    y: 5
+    tile: 64
+  }
+  cell {
+    x: -1
+    y: 5
+    tile: 64
+  }
+  cell {
     x: 47
     y: 6
     tile: 16
+  }
+  cell {
+    x: 52
+    y: 6
+    tile: 64
+  }
+  cell {
+    x: -1
+    y: 6
+    tile: 64
   }
   cell {
     x: 47
@@ -302,9 +372,15 @@ layers {
     y: 7
     tile: 16
   }
-}
-layers {
-  id: "player"
-  z: 0.0
+  cell {
+    x: 52
+    y: 7
+    tile: 64
+  }
+  cell {
+    x: -1
+    y: 7
+    tile: 64
+  }
 }
 material: "/builtins/materials/tile_map.material"
