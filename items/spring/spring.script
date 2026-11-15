@@ -1,5 +1,5 @@
-go.property("force", 600)
-go.property("angle", 45) -- in degree
+go.property("force", 500)
+go.property("angle", 45) -- in degree from the horizontal
 
 function init(self)
 	
@@ -7,9 +7,12 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("collision_response") and message.other_group == hash("player") then
-		local v = vmath.vector3(1 / math.atan(self.angle), 1, 1)
+		print(self.force, self.angle)
+		
+		local v = vmath.vector3(1 / math.tan(math.rad(self.angle)), 1, 0)
 		v = (v / vmath.length(v)) * self.force
 
-		msg.post(message.other_id, "apply_player_force", { force = self.force })
+		pprint(v)
+		msg.post(message.other_id, "apply_player_force", { force = v })
 	end
 end
