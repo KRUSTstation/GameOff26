@@ -10,6 +10,7 @@ nodes {
   }
   type: TYPE_BOX
   id: "background"
+  adjust_mode: ADJUST_MODE_STRETCH
   inherit_alpha: true
 }
 nodes {

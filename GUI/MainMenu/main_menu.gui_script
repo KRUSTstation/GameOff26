@@ -5,7 +5,11 @@ end
 function update(self)
 	local background = gui.get_node("background")
 
-	local centre = vmath.vector3(gui.get_width() / 2, gui.get_height() / 2, 0)
+	local width = gui.get_width()
+	local height = gui.get_height()
+
+	local centre = vmath.vector3(width / 2, height / 2, 0)
+	gui.set_size(background, vmath.vector3(width, height, 0))
 	gui.set_position(background, centre)
 end
 
