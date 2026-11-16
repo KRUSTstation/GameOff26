@@ -6,13 +6,10 @@ function init(self)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("collision_response") and message.other_group == hash("player") then
-		print(self.force, self.angle)
-		
+	if message_id == hash("collision_response") and message.other_group == hash("player") then	
 		local v = vmath.vector3(1 / math.tan(math.rad(self.angle)), 1, 0)
 		v = (v / vmath.length(v)) * self.force
 
-		pprint(v)
 		msg.post(message.other_id, "apply_player_force", { force = v })
 	end
 end

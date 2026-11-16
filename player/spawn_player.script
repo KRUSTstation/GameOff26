@@ -38,6 +38,6 @@ function update(self, dt)
 
 	-- Finish check
 	if pos.x >= self.finish_pos.x then
-		print("Finished")
+		msg.post("main:/loader", "finish_level")
 	end
 end

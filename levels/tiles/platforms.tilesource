@@ -5,17 +5,17 @@ collision: "/assets/sprites/platforms.png"
 convex_hulls {
   index: 0
   count: 8
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 8
   count: 6
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 14
   count: 6
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 20
@@ -25,17 +25,17 @@ convex_hulls {
 convex_hulls {
   index: 20
   count: 8
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 28
   count: 6
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 34
   count: 6
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 40
@@ -45,17 +45,17 @@ convex_hulls {
 convex_hulls {
   index: 40
   count: 8
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 48
   count: 6
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 54
   count: 6
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 60
@@ -65,27 +65,26 @@ convex_hulls {
 convex_hulls {
   index: 60
   count: 8
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 68
   count: 6
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 74
   count: 6
-  collision_group: "ground"
+  collision_group: "terrain"
 }
 convex_hulls {
   index: 80
   count: 0
   collision_group: ""
 }
-collision_groups: "ground"
+collision_groups: "terrain"
 animations {
   id: "anim"
-  start_tile: 1
-  end_tile: 1
+  frames: 1
 }
 extrude_borders: 2

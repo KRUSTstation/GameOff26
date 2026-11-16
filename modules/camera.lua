@@ -47,8 +47,8 @@ function Camera:update()
 	local halfw = window_width / 2 / zoom
 	local halfh = window_height / 2 / zoom
 
-	local pos = go.get_position(self.camera_id)
-	local goal = go.get_position(self.target_id)
+	local pos = go.get_world_position(self.camera_id)
+	local goal = go.get_world_position(self.target_id)
 	goal.z = pos.z
 
 	local b = self.follow_options.bounds

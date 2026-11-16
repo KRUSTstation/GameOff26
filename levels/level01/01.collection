@@ -1,28 +1,4 @@
 name: "1"
-instances {
-  id: "g2"
-  prototype: "/items/spring/g2/g2.go"
-  position {
-    x: 45.0
-    y: 23.0
-  }
-}
-instances {
-  id: "g1"
-  prototype: "/items/spring/g1/g1.go"
-  position {
-    x: 156.0
-    y: 23.0
-  }
-}
-instances {
-  id: "g3"
-  prototype: "/items/spring/g3/g3.go"
-  position {
-    x: 294.0
-    y: 22.0
-  }
-}
 scale_along_z: 0
 embedded_instances {
   id: "tiles"
@@ -145,13 +121,9 @@ embedded_instances {
 }
 embedded_instances {
   id: "items"
-  children: "springs"
   data: ""
 }
 embedded_instances {
-  id: "springs"
-  children: "g1"
-  children: "g2"
-  children: "g3"
+  id: "go"
   data: ""
 }

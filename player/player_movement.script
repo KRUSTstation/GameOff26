@@ -1,13 +1,13 @@
-local SPEED = 90
+local SPEED = 90 -- max speed
 local ROLL_SPEED = 130
 local ROLL_TIME = 0.8
 local GRAVITY = -900
 local JUMP_SPEED = 280
 local MAX_FALL = -500
-local X_DECAY = 50
-local X_MOVEMENT_DECAY = 100
+local X_DECAY = 50 -- air resistance basically
+local X_MOVEMENT_DECAY = 100 -- when moving in the air
 
-local GROUND = hash("ground")
+local GROUND = hash("terrain")
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
@@ -31,7 +31,7 @@ local function play(self, anim)
 end
 
 function update(self, dt)
-	pprint(self.velocity)
+	-- movement math
 	local dir = 0
 	if self.left then dir = dir - 1 end
 	if self.right then dir = dir + 1 end
@@ -61,6 +61,7 @@ function update(self, dt)
 
 	go.set_position(go.get_position() + self.velocity * dt)
 
+	-- animations
 	if dir ~= 0 then
 		local face_left = dir < 0
 		if face_left ~= self.facing_left then

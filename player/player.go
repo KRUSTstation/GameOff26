@@ -22,7 +22,7 @@ embedded_components {
   "friction: 0.1\n"
   "restitution: 0.5\n"
   "group: \"player\"\n"
-  "mask: \"ground\"\n"
+  "mask: \"terrain\"\n"
   "mask: \"item\"\n"
   "mask: \"entity\"\n"
   "locked_rotation: true\n"
