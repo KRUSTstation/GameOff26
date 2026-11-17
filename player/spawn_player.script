@@ -1,3 +1,5 @@
+go.property("phase", "1")
+
 local function bounds()
 	return {
 		left  = go.get_world_position("/cam_left"),
@@ -18,8 +20,7 @@ function init(self)
 
 	self.death_lower = go.get_position("/death_lower").y
 
-	local cam = factory.create("#camerafactory", pos)
-	msg.post(cam, "set_target", {target = self.player, bounds = bounds()})
+	msg.post("/camera", "set_target", {target = self.player, bounds = bounds()})
 end
 
 function on_message(self, message_id, message, sender)
@@ -38,6 +39,10 @@ function update(self, dt)
 
 	-- Finish check
 	if pos.x >= self.finish_pos.x then
-		msg.post("main:/loader", "finish_level")
+		if self.phase == "1" then
+			msg.post("main:/loader", "load_next_phase")
+		else
+			msg.post("main:/loader", "finish_level")
+		end
 	end
 end

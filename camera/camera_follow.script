@@ -10,12 +10,20 @@ function init(self)
 	self.camera = Camera.new(go.get_id())
 end
 
+function update(self, dt)
+	self.camera:update()
+end
+
 function on_message(self, message_id, message, sender)
 	if message_id == hash("set_target") then
 		self.camera:follow(message.target, { lerp = LERP_SMOOTH , bounds = message.bounds })
 	end
 end
 
-function update(self, dt)
-	self.camera:update()
+function final(self)
+	Camera.objects[self.camera.uuid] = nil
 end
+
+-- function update(self, dt)
+-- 	self.camera:update()
+-- end

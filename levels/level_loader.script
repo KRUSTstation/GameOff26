@@ -1,7 +1,18 @@
+local MAX_PHASES = 2
+
+local function proxy_url(level, phase)
+	return "main:/" .. level .. "#" .. level .. "_p" .. phase
+end
+
+local function level_object(level)
+	return "main:/" .. level
+end
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
-
 	self.level_loaded = nil
+	self.phase = nil
+	self.pending_phase = nil
 end
 
 function on_message(self, message_id, message, sender)
@@ -9,13 +20,29 @@ function on_message(self, message_id, message, sender)
 		msg.post(sender, "init")
 		msg.post(sender, "enable")
 
+	elseif message_id == hash("proxy_unloaded") then
+		if self.pending_phase then
+			self.phase = self.pending_phase
+			self.pending_phase = nil
+			msg.post(proxy_url(self.level_loaded, self.phase), "load")
+		end
+
 	elseif message_id == hash("load_level") then
-		msg.post("#" .. message.level, "load")
 		self.level_loaded = message.level
+		self.phase = 1
+		msg.post(level_object(self.level_loaded), "acquire_input_focus")
+		msg.post(proxy_url(self.level_loaded, self.phase), "load")
+
+	elseif message_id == hash("load_next_phase") and self.level_loaded and self.phase < MAX_PHASES then
+		self.pending_phase = self.phase + 1
+		msg.post(proxy_url(self.level_loaded, self.phase), "unload")
 
 	elseif message_id == hash("unload_level") and self.level_loaded then
-		msg.post("#" .. self.level_loaded, "unload")
+		msg.post(proxy_url(self.level_loaded, self.phase), "unload")
+		msg.post(level_object(self.level_loaded), "release_input_focus")
 		self.level_loaded = nil
+		self.phase = nil
+		self.pending_phase = nil
 
 	elseif message_id == hash("finish_level") then
 		msg.post("/loader", "unload_level")

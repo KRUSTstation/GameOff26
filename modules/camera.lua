@@ -1,17 +1,23 @@
 local LERP_SMOOTHING_DEFAULT = 1
 
+local HttpService = require "modules.httpservice"
+
 ---@class Camera
+---@field uuid string
 ---@field camera_id hash
 ---@field target_id hash|nil
 ---@field follow_options table|nil
 local Camera = {}
 Camera.__index = Camera
 
+Camera.objects = {}
+
 ---@param camera_id hash
 ---@return Camera
 function Camera.new(camera_id)
 	local self = setmetatable({}, Camera)
 
+	self.uuid = HttpService.GenerateUUID()
 	self.camera_id = camera_id
 
 	-- Following
@@ -20,6 +26,8 @@ function Camera.new(camera_id)
 	--[[
 	accepts lerp: int, boundaries: {left: vector, right: vector}, 
 	]]
+
+	Camera.objects[self.uuid] = self
 
 	return self
 end
