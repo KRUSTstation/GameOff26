@@ -2,8 +2,9 @@ local druid = require "druid.druid"
 
 local GlobalGUI = {}
 
-function GlobalGUI.update()
-	local background = gui.get_node("background")
+---@param main_node string
+function GlobalGUI.resize(main_node)
+	local background = gui.get_node(main_node)
 
 	local width = gui.get_width()
 	local height = gui.get_height()

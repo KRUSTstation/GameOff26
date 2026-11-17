@@ -12,8 +12,12 @@ embedded_instances {
 embedded_instances {
   id: "GUI"
   data: "components {\n"
-  "  id: \"MainMenu\"\n"
+  "  id: \"main_menu\"\n"
   "  component: \"/GUI/MainMenu/main_menu.gui\"\n"
+  "}\n"
+  "components {\n"
+  "  id: \"loading\"\n"
+  "  component: \"/GUI/Loading/loading.gui\"\n"
   "}\n"
   ""
 }

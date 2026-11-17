@@ -11,6 +11,8 @@ local GROUND = hash("terrain")
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	self.allow_movement = false
+	
 	self.velocity = vmath.vector3()
 	self.correction = vmath.vector3()
 	
@@ -21,6 +23,8 @@ function init(self)
 	self.facing_left = false
 	
 	self.current_anim = nil
+
+	msg.post("main:/loader#level_loader", "register_player")
 end
 
 local function play(self, anim)
@@ -31,6 +35,8 @@ local function play(self, anim)
 end
 
 function update(self, dt)
+	if not self.allow_movement then return end
+	
 	-- movement math
 	local dir = 0
 	if self.left then dir = dir - 1 end
@@ -128,6 +134,9 @@ function on_message(self, message_id, message, sender)
 		self.velocity.y = message.force.y
 		self.velocity.x = message.force.x
 		self.grounded = false
+
+	elseif message_id == hash("allow_movement") then
+		self.allow_movement = true
 	end
 end
 

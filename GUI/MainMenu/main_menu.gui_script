@@ -1,25 +1,28 @@
 local druid = require "druid.druid"
+local global_gui = require "GUI.global_gui"
 
 local function lvl1b_callback()
 	msg.post("#", "disable")
 	msg.post("/loader", "load_level", {level = "01"})
 end
 
+local function lvl1b_hover(self, _, is_hover)
+	local scale = is_hover and 1.15 or 1.0
+	gui.animate(self.lvl1b.node, gui.PROP_SCALE, vmath.vector3(scale), gui.EASING_OUTSINE, 0.15)
+end
+
 function init(self)
+	msg.post(".", "acquire_input_focus")
+	
 	self.druid = druid.new(self)
+
+	-- Level 1 Button
 	self.lvl1b = self.druid:new_button("load_level_1", lvl1b_callback)
+	self.lvl1b.hover.on_mouse_hover:subscribe(lvl1b_hover, self)
 end
 
 function update(self, dt)
-	local background = gui.get_node("background")
-
-	local width = gui.get_width()
-	local height = gui.get_height()
-
-	local centre = vmath.vector3(width / 2, height / 2, 0)
-	gui.set_size(background, vmath.vector3(width, height, 0))
-	gui.set_position(background, centre)
-
+	global_gui.resize("background")
 	self.druid:update(dt)
 end
 
@@ -28,13 +31,7 @@ function on_message(self, message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-	if action_id == hash("click") and action.pressed then
-		local lvl1b = gui.get_node("load_level_1")
-		if gui.pick_node(lvl1b, action.x, action.y) then
-			msg.post("#", "disable")
-			msg.post("/loader", "load_level", {level = "01"})
-		end
-	end
+	return self.druid:on_input(action_id, action)
 end
 
 function final(self)

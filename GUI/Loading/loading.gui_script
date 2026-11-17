@@ -1,6 +1,8 @@
-local druid = require("druid.druid")
+local druid = require "druid.druid"
+local global_gui = require "GUI.global_gui"
 
 function init(self)
+	msg.post("#", "disable")
 	self.druid = druid.new(self)
 end
 

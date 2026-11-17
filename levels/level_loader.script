@@ -13,6 +13,27 @@ function init(self)
 	self.level_loaded = nil
 	self.phase = nil
 	self.pending_phase = nil
+	self.player_url = nil
+	self.loading_done = false
+end
+
+local function try_release_player(self)
+	if self.loading_done and self.player_url then
+		msg.post("/GUI#loading", "disable")
+		msg.post(self.player_url, "allow_movement")
+	end
+end
+
+local function start_loading(self)
+	self.player_url = nil
+	self.loading_done = false
+
+	msg.post("/GUI#loading", "enable")
+	msg.post(proxy_url(self.level_loaded, self.phase), "load")
+	timer.delay(2, false, function()
+		self.loading_done = true
+		try_release_player(self)
+	end)
 end
 
 function on_message(self, message_id, message, sender)
@@ -20,18 +41,23 @@ function on_message(self, message_id, message, sender)
 		msg.post(sender, "init")
 		msg.post(sender, "enable")
 
+	elseif message_id == hash("register_player") then
+		self.player_url = sender
+		try_release_player(self)
+
 	elseif message_id == hash("proxy_unloaded") then
+		self.player_url = nil
 		if self.pending_phase then
 			self.phase = self.pending_phase
 			self.pending_phase = nil
-			msg.post(proxy_url(self.level_loaded, self.phase), "load")
+			start_loading(self)
 		end
 
 	elseif message_id == hash("load_level") then
 		self.level_loaded = message.level
 		self.phase = 1
 		msg.post(level_object(self.level_loaded), "acquire_input_focus")
-		msg.post(proxy_url(self.level_loaded, self.phase), "load")
+		start_loading(self)
 
 	elseif message_id == hash("load_next_phase") and self.level_loaded and self.phase < MAX_PHASES then
 		self.pending_phase = self.phase + 1
@@ -46,6 +72,6 @@ function on_message(self, message_id, message, sender)
 
 	elseif message_id == hash("finish_level") then
 		msg.post("/loader", "unload_level")
-		msg.post("/GUI#MainMenu", "enable")
+		msg.post("/GUI#main_menu", "enable")
 	end
 end
