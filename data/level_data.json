@@ -1,0 +1,15 @@
+{
+	"01": {
+		"name": "Tutorial",
+		"phases": [
+			{
+				"name": "Living Room",
+				"max_energy": 4
+			},
+			{
+				"name": "Kitchen",
+				"max_energy": 4
+			}
+		]
+	}
+}

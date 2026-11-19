@@ -24,6 +24,7 @@ scale_mode = stretch
 [project]
 title = GameOff_2026
 dependencies_metadata = 0
+custom_resources = /data
 dependencies#0 = https://github.com/Insality/defold-event/archive/refs/tags/21.zip
 dependencies#1 = https://github.com/Insality/druid/archive/refs/tags/1.4.0.zip
 

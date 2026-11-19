@@ -1,0 +1,117 @@
+{
+	"standing_fan": {
+		"energy": 2
+	},
+	
+	"sofa": {
+		"energy": 3
+	},
+	
+	"standing_fan": {
+		"energy": 2
+	},
+	
+	"dining_table": {
+		"energy": 2
+	},
+	
+	"bedsheet": {
+		"energy": 1
+	},
+	
+	"possessed_bear": {
+		"energy": 1
+	},
+	
+	"toothbrush": {
+		"energy": 1
+	},
+	
+	"toothpaste": {
+		"energy": 1
+	},
+	
+	"plunger": {
+		"energy": 1
+	},
+	
+	"towel": {
+		"energy": 1
+	},
+	
+	"toilet_seat": {
+		"energy": 1
+	},
+	
+	"bidet": {
+		"energy": 1
+	},
+	
+	"ceiling_fan": {
+		"energy": 2
+	},
+	
+	"portable_toilet": {
+		"Energy": 3
+	},
+
+	"lighter": {
+		"Energy": 1
+	},
+
+	"mixer": {
+		"Energy": 1
+	},
+
+	"hi_fi_sound_system": {
+		"Energy": 2
+	},
+
+	"popcorn": {
+		"Energy": 1
+	},
+
+	"smoke_machine": {
+		"Energy": 2
+	},
+
+	"bbq_pit": {
+		"Energy": 2
+	},
+
+	"potted_plant": {
+		"Energy": 1
+	},
+
+	"drying_rack": {
+		"Energy": 2
+	},
+
+	"car": {
+		"Energy": 4
+	},
+
+	"bicycle": {
+		"Energy": 2
+	},
+
+	"shoe_rack": {
+		"Energy": 2
+	},
+
+	"pc": {
+		"Energy": 3
+	},
+
+	"tv": {
+		"Energy": 3
+	},
+
+	"ps5pro": {
+		"Energy": 2
+	},
+
+	"claw_machine": {
+		"Energy": 3
+	},
+}
