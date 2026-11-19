@@ -1,6 +1,6 @@
 components {
   id: "spring"
-  component: "/items/spring/spring.script"
+  component: "/items/static/spring/spring.script"
   properties {
     id: "force"
     value: "500.0"
@@ -49,7 +49,7 @@ embedded_components {
   "}\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/items/spring/springs.atlas\"\n"
+  "  texture: \"/items/static/spring/springs.atlas\"\n"
   "}\n"
   ""
   scale {
