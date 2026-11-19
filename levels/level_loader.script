@@ -1,4 +1,4 @@
-local MAX_PHASES = 2
+local LevelData = require "data.level_data"
 
 local function proxy_url(level, phase)
 	return "main:/" .. level .. "#" .. level .. "_p" .. phase
@@ -10,11 +10,13 @@ end
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	
 	self.level_loaded = nil
 	self.phase = nil
 	self.pending_phase = nil
 	self.player_url = nil
 	self.loading_done = false
+	self.max_phase = nil
 end
 
 local function try_release_player(self)
@@ -56,19 +58,24 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == hash("load_level") then
 		self.level_loaded = message.level
 		self.phase = 1
+		self.max_phase = #LevelData[self.level_loaded].Phases
+		
 		msg.post(level_object(self.level_loaded), "acquire_input_focus")
 		start_loading(self)
 
-	elseif message_id == hash("load_next_phase") and self.level_loaded and self.phase < MAX_PHASES then
+	elseif message_id == hash("load_next_phase") and self.level_loaded and self.phase < self.max_phase then
 		self.pending_phase = self.phase + 1
+		
 		msg.post(proxy_url(self.level_loaded, self.phase), "unload")
 
 	elseif message_id == hash("unload_level") and self.level_loaded then
 		msg.post(proxy_url(self.level_loaded, self.phase), "unload")
 		msg.post(level_object(self.level_loaded), "release_input_focus")
+		
 		self.level_loaded = nil
 		self.phase = nil
 		self.pending_phase = nil
+		self.max_phase = nil
 
 	elseif message_id == hash("finish_level") then
 		msg.post("/loader", "unload_level")
