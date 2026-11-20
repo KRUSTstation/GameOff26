@@ -1,5 +1,5 @@
 local Json = require "modules.json"
-local LevelData = Json.load_file("level_data.json")
+local LevelData = Json.load_file("level_data")
 
 local function proxy_url(level, phase)
 	return "main:/" .. level .. "#" .. level .. "_p" .. phase
@@ -24,6 +24,9 @@ local function try_release_player(self)
 	if self.loading_done and self.player_url then
 		msg.post("/GUI#loading", "disable")
 		msg.post(self.player_url, "allow_movement")
+		
+		local interact = msg.url(self.player_url.socket, self.player_url.path, "interact")
+		msg.post(interact, "set_energy_levels", { level = self.level_loaded, phase = self.phase })
 	end
 end
 

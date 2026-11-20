@@ -2,6 +2,10 @@ components {
   id: "player_movement"
   component: "/player/player_movement.script"
 }
+components {
+  id: "interact"
+  component: "/player/interact.script"
+}
 embedded_components {
   id: "sprite"
   type: "sprite"
@@ -23,7 +27,8 @@ embedded_components {
   "restitution: 0.5\n"
   "group: \"player\"\n"
   "mask: \"terrain\"\n"
-  "mask: \"item\"\n"
+  "mask: \"item_interactable\"\n"
+  "mask: \"item_static\"\n"
   "mask: \"entity\"\n"
   "locked_rotation: true\n"
   ""

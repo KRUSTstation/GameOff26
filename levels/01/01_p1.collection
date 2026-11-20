@@ -3,6 +3,14 @@ instances {
   id: "camera"
   prototype: "/camera/camera.go"
 }
+instances {
+  id: "dining_table"
+  prototype: "/items/interactable/dining_table/dining_table.go"
+  position {
+    x: 86.0
+    y: 25.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "tiles"
@@ -20,6 +28,7 @@ embedded_instances {
   "restitution: 0.5\\n"
   "group: \\\"ground\\\"\\n"
   "mask: \\\"player\\\"\\n"
+  "mask: \\\"item_interactable\\\"\\n"
   "\"\n"
   "}\n"
   ""
@@ -28,7 +37,7 @@ embedded_instances {
   id: "spawner"
   data: "components {\n"
   "  id: \"spawn_player\"\n"
-  "  component: \"/player/spawn_player.script\"\n"
+  "  component: \"/player/player_handler.script\"\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"playerfactory\"\n"
@@ -119,6 +128,7 @@ embedded_instances {
 }
 embedded_instances {
   id: "items"
+  children: "dining_table"
   data: ""
 }
 embedded_instances {

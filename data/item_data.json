@@ -52,66 +52,66 @@
 	},
 	
 	"portable_toilet": {
-		"Energy": 3
+		"energy": 3
 	},
 
 	"lighter": {
-		"Energy": 1
+		"energy": 1
 	},
 
 	"mixer": {
-		"Energy": 1
+		"energy": 1
 	},
 
 	"hi_fi_sound_system": {
-		"Energy": 2
+		"energy": 2
 	},
 
 	"popcorn": {
-		"Energy": 1
+		"energy": 1
 	},
 
 	"smoke_machine": {
-		"Energy": 2
+		"energy": 2
 	},
 
 	"bbq_pit": {
-		"Energy": 2
+		"energy": 2
 	},
 
 	"potted_plant": {
-		"Energy": 1
+		"energy": 1
 	},
 
 	"drying_rack": {
-		"Energy": 2
+		"energy": 2
 	},
 
 	"car": {
-		"Energy": 4
+		"energy": 4
 	},
 
 	"bicycle": {
-		"Energy": 2
+		"energy": 2
 	},
 
 	"shoe_rack": {
-		"Energy": 2
+		"energy": 2
 	},
 
 	"pc": {
-		"Energy": 3
+		"energy": 3
 	},
 
 	"tv": {
-		"Energy": 3
+		"energy": 3
 	},
 
 	"ps5pro": {
-		"Energy": 2
+		"energy": 2
 	},
 
 	"claw_machine": {
-		"Energy": 3
-	},
+		"energy": 3
+	}
 }

@@ -1,0 +1,55 @@
+local Json = require "modules.json"
+local LevelData = Json.load_file("level_data")
+local ItemData = Json.load_file("item_data")
+
+local INTERACTABLE = hash("item_interactable")
+
+function init(self)
+	self.energy_used = 0
+	self.max_energy = 0
+
+	self.items = {}
+end
+
+function update(self, dt)
+	if #self.items == 0 then return end
+	
+	local y_offset = 0
+	
+	for _, item in pairs(self.items) do
+		local item_sprite = msg.url(nil, item, "sprite")
+		local item_size = vmath.mul_per_elem(go.get(item_sprite, "size"), go.get(item_sprite, "scale"))
+		local player_pos = go.get("#sprite", "position")
+		
+		go.set_position(go.get_position() + vmath.vector3(-item_size.x - 3, y_offset + player_pos.y, 1), item)
+		y_offset = y_offset + 1
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("contact_point_response") and message.group == INTERACTABLE then
+		local id = message.other_id
+		
+		for item, data in pairs(ItemData) do
+			if id == hash("/" .. item) then
+				local new_energy = self.energy_used + data.energy
+
+				if new_energy <= self.max_energy then
+					self.energy_used = new_energy
+					table.insert(self.items, id)
+					msg.post(msg.url(nil, id, "collisionobject"), "disable")
+				end
+				
+				return
+			end
+		end
+
+	elseif message_id == hash("set_energy_levels") then
+		local level_data = LevelData[message.level].phases[message.phase]
+		
+		self.max_energy = level_data.max_energy
+
+		self.energy_used = 0
+		self.items = {}
+	end
+end

@@ -1,4 +1,8 @@
-go.property("phase", "1")
+go.property("phase", 1)
+go.property("level", "01")
+
+local Json = require "modules.json"
+local LevelData = Json.load_file("level_data")
 
 local function bounds()
 	return {
@@ -39,7 +43,7 @@ function update(self, dt)
 
 	-- Finish check
 	if pos.x >= self.finish_pos.x then
-		if self.phase == "1" then
+		if self.phase < #LevelData[self.level].phases then
 			msg.post("main:/loader", "load_next_phase")
 		else
 			msg.post("main:/loader", "finish_level")
