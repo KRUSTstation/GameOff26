@@ -25,6 +25,9 @@ scale_mode = stretch
 title = GameOff_2026
 dependencies_metadata = 0
 custom_resources = /data
+publisher = krustybarley
+developer = krustybarley
+write_log_file = 0
 dependencies#0 = https://github.com/Insality/defold-event/archive/refs/tags/21.zip
 dependencies#1 = https://github.com/Insality/druid/archive/refs/tags/1.4.0.zip
 
