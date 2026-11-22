@@ -11,6 +11,14 @@ instances {
     y: 25.0
   }
 }
+instances {
+  id: "dining_table1"
+  prototype: "/items/interactable/dining_table/dining_table.go"
+  position {
+    x: 255.0
+    y: 25.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "tiles"
@@ -129,6 +137,7 @@ embedded_instances {
 embedded_instances {
   id: "items"
   children: "dining_table"
+  children: "dining_table1"
   data: ""
 }
 embedded_instances {

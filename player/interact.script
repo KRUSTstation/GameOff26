@@ -1,8 +1,12 @@
 local Json = require "modules.json"
+local TableHelper = require "modules.table_helper"
+
 local LevelData = Json.load_file("level_data")
 local ItemData = Json.load_file("item_data")
 
 local INTERACTABLE = hash("item_interactable")
+local MAX_SPEED = 90
+local Y_OFFSET = 5
 
 function init(self)
 	self.energy_used = 0
@@ -13,35 +17,49 @@ end
 
 function update(self, dt)
 	if #self.items == 0 then return end
-	
+
+	local player_pos = go.get_position()
 	local y_offset = 0
-	
-	for _, item in pairs(self.items) do
+
+	for _, item in ipairs(self.items) do
 		local item_sprite = msg.url(nil, item, "sprite")
 		local item_size = vmath.mul_per_elem(go.get(item_sprite, "size"), go.get(item_sprite, "scale"))
-		local player_pos = go.get("#sprite", "position")
-		
-		go.set_position(go.get_position() + vmath.vector3(-item_size.x - 3, y_offset + player_pos.y, 1), item)
-		y_offset = y_offset + 1
+
+		local facing_left = go.get("#player_movement", "facing_left")
+		local facing_dir = facing_left and 1 or -1
+
+		local target_pos = player_pos + vmath.vector3((item_size.x + 3) * facing_dir, y_offset, 1)
+		local item_pos = go.get_position(item)
+
+		local to_target = target_pos - item_pos
+		local dist = vmath.length(to_target)
+		local step = MAX_SPEED * dt
+
+		if dist <= step then
+			go.set_position(target_pos, item)
+		elseif dist > 0 then
+			go.set_position(item_pos + (to_target / dist) * step, item)
+		end
+
+		y_offset = y_offset + Y_OFFSET + item_size.y
 	end
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("contact_point_response") and message.group == INTERACTABLE then
 		local id = message.other_id
-		
-		for item, data in pairs(ItemData) do
-			if id == hash("/" .. item) then
-				local new_energy = self.energy_used + data.energy
 
-				if new_energy <= self.max_energy then
-					self.energy_used = new_energy
-					table.insert(self.items, id)
-					msg.post(msg.url(nil, id, "collisionobject"), "disable")
-				end
-				
-				return
-			end
+		if TableHelper.contains(self.items, id) then return end
+		
+		local item_type = go.get(msg.url(nil, id, "item"), "item_type")
+
+		local data = ItemData[item_type]
+		local new_energy = self.energy_used + data.energy
+
+		if new_energy <= self.max_energy then
+			self.energy_used = new_energy
+			table.insert(self.items, id)
+			msg.post(msg.url(nil, id, "collisionobject"), "disable")
 		end
 
 	elseif message_id == hash("set_energy_levels") then

@@ -1,3 +1,12 @@
+components {
+  id: "item"
+  component: "/items/interactable/item.script"
+  properties {
+    id: "item_type"
+    value: "dining_table"
+    type: PROPERTY_TYPE_TEXT
+  }
+}
 embedded_components {
   id: "collisionobject"
   type: "collisionobject"

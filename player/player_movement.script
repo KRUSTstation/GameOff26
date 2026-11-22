@@ -1,3 +1,5 @@
+go.property("facing_left", false)
+
 local SPEED = 90 -- max speed
 local ROLL_SPEED = 130
 local ROLL_TIME = 0.8
