@@ -17,6 +17,8 @@ embedded_components {
   "group: \"item_interactable\"\n"
   "mask: \"player\"\n"
   "mask: \"terrain\"\n"
+  "mask: \"item_interactable\"\n"
+  "mask: \"item_static\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
