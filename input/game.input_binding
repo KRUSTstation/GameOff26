@@ -26,6 +26,10 @@ key_trigger {
   input: KEY_S
   action: "roll"
 }
+key_trigger {
+  input: KEY_G
+  action: "drop"
+}
 mouse_trigger {
   input: MOUSE_BUTTON_1
   action: "touch"
