@@ -1,3 +1,5 @@
+local SoundService = require "modules.soundservice"
+
 go.property("facing_left", false)
 
 local SPEED = 90 -- max speed
@@ -23,7 +25,8 @@ function init(self)
 	self.rolling = false
 	self.grounded = false
 	self.facing_left = false
-	
+
+	self.walking_sound = nil
 	self.current_anim = nil
 
 	msg.post("main:/loader#level_loader", "register_player")
@@ -83,6 +86,15 @@ function update(self, dt)
 
 	else
 		play(self, "idle")
+	end
+
+	-- sounds
+	if dir ~= 0 and self.walking_sound == nil and self.grounded then
+		self.walking_sound = SoundService.play("walk_1")
+		
+	elseif (dir == 0 and self.walking_sound ~= nil) or (not self.grounded and self.walking_sound ~= nil) then
+		SoundService.stop("walk_1")
+		self.walking_sound = nil
 	end
 
 	self.correction = vmath.vector3()

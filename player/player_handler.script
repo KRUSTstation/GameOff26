@@ -1,3 +1,5 @@
+local SoundService = require "modules.soundservice"
+
 go.property("phase", 1)
 go.property("level", "01")
 
@@ -43,6 +45,7 @@ function update(self, dt)
 
 	-- Finish check
 	if pos.x >= self.finish_pos.x then
+		SoundService.stopall()
 		if self.phase < #LevelData[self.level].phases then
 			msg.post("main:/loader", "load_next_phase")
 		else

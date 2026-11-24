@@ -1,11 +1,11 @@
 local Json = require "modules.json"
-local TableHelper = require "modules.table_helper"
+local TableHelper = require "modules.tablehelper"
 
 local LevelData = Json.load_file("level_data")
 local ItemData = Json.load_file("item_data")
 
 local INTERACTABLE = hash("item_interactable")
-local MAX_SPEED = 90
+local MAX_SPEED = 120
 local MAX_ROTATION_SPEED = 5
 local Y_OFFSET = 5
 
