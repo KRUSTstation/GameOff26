@@ -10,7 +10,8 @@ local SoundService = {}
 local active_sounds = {}
 
 local COUNTS = {
-	walk_wood = 4
+	walk_wood = 4,
+	pick_up = 2
 }
 
 local SOUND_GO = "main:/sounds"

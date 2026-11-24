@@ -1,5 +1,6 @@
 local Json = require "modules.json"
 local TableHelper = require "modules.tablehelper"
+local SoundService = require "modules.soundservice"
 
 local LevelData = Json.load_file("level_data")
 local ItemData = Json.load_file("item_data")
@@ -71,6 +72,8 @@ function on_message(self, message_id, message, sender)
 			self.energy_used = new_energy
 			table.insert(self.items, id)
 			msg.post(msg.url(nil, id, "collisionobject"), "disable")
+
+			SoundService.play_random_sound_from_group("pick_up")
 		end
 
 	elseif message_id == hash("set_energy_levels") then
