@@ -11,6 +11,8 @@ local MAX_FALL = -500
 local X_DECAY = 50 -- air resistance basically
 local X_MOVEMENT_DECAY = 100 -- when moving in the air
 
+local WALK_SOUND_COOLDOWN = 0.3
+
 local GROUND = hash("terrain")
 
 function init(self)
@@ -26,7 +28,7 @@ function init(self)
 	self.grounded = false
 	self.facing_left = false
 
-	self.walking_sound = nil
+	self.walk_sound_cd = false
 	self.current_anim = nil
 
 	msg.post("main:/loader#level_loader", "register_player")
@@ -89,12 +91,10 @@ function update(self, dt)
 	end
 
 	-- sounds
-	if dir ~= 0 and self.walking_sound == nil and self.grounded then
-		self.walking_sound = SoundService.play("walk_1")
-		
-	elseif (dir == 0 and self.walking_sound ~= nil) or (not self.grounded and self.walking_sound ~= nil) then
-		SoundService.stop("walk_1")
-		self.walking_sound = nil
+	if not self.walk_sound_cd and dir ~= 0 and self.walking_sound == nil and self.grounded then
+		SoundService.play_random_sound_from_group("walk_wood")
+		self.walk_sound_cd = true
+		timer.delay(WALK_SOUND_COOLDOWN, false, function(self) self.walk_sound_cd = false end)
 	end
 
 	self.correction = vmath.vector3()
